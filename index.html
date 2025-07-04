@@ -1,0 +1,266 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Personal Finance & Todo App</title>
+    <link rel="stylesheet" href="styles.css">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+</head>
+<body>
+    <!-- Navigation -->
+    <nav class="navbar">
+        <div class="nav-container">
+            <div class="nav-logo">
+                <i class="fas fa-chart-line"></i>
+                <span>xPense</span>
+            </div>
+            <ul class="nav-menu">
+                <li class="nav-item">
+                    <a href="#" class="nav-link active" data-section="home">
+                        <i class="fas fa-home"></i>
+                        <span>Home</span>
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a href="#" class="nav-link" data-section="todos">
+                        <i class="fas fa-tasks"></i>
+                        <span>Todos</span>
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a href="#" class="nav-link" data-section="income">
+                        <i class="fas fa-rupee-sign"></i>
+                        <span>Income</span>
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a href="#" class="nav-link" data-section="expenses">
+                        <i class="fas fa-receipt"></i>
+                        <span>Expenses</span>
+                    </a>
+                </li>
+            </ul>
+            <div class="hamburger">
+                <span class="bar"></span>
+                <span class="bar"></span>
+                <span class="bar"></span>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Main Content -->
+    <main class="main-content">
+        <!-- Home Section -->
+        <section id="home" class="section active">
+            <div class="container">
+                <div class="hero">
+                    <h1>Welcome to Your Personal Finance Dashboard</h1>
+                    <p>Track your todos, income, and expenses all in one place</p>
+                </div>
+                
+                <div class="dashboard-grid">
+                    <div class="dashboard-card">
+                        <div class="card-header">
+                            <i class="fas fa-tasks"></i>
+                            <h3>Active Todos</h3>
+                        </div>
+                        <div class="card-content">
+                            <div class="stat-number" id="activeTodos">0</div>
+                            <p>Tasks remaining</p>
+                        </div>
+                    </div>
+                    
+                    <div class="dashboard-card">
+                        <div class="card-header">
+                            <i class="fas fa-arrow-up text-green"></i>
+                            <h3>This Month's Income</h3>
+                        </div>
+                        <div class="card-content">
+                            <div class="stat-number text-green" id="monthlyIncome">$0.00</div>
+                            <p>Total earned</p>
+                        </div>
+                    </div>
+                    
+                    <div class="dashboard-card">
+                        <div class="card-header">
+                            <i class="fas fa-arrow-down text-red"></i>
+                            <h3>This Month's Expenses</h3>
+                        </div>
+                        <div class="card-content">
+                            <div class="stat-number text-red" id="monthlyExpenses">$0.00</div>
+                            <p>Total spent</p>
+                        </div>
+                    </div>
+                    
+                    <div class="dashboard-card">
+                        <div class="card-header">
+                            <i class="fas fa-balance-scale"></i>
+                            <h3>Net Balance</h3>
+                        </div>
+                        <div class="card-content">
+                            <div class="stat-number" id="netBalance">$0.00</div>
+                            <p>Income - Expenses</p>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="recent-activity">
+                    <h2>Recent Activity</h2>
+                    <div class="activity-list" id="recentActivity">
+                        <!-- Recent activities will be populated here -->
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Todos Section -->
+        <section id="todos" class="section">
+            <div class="container">
+                <div class="section-header">
+                    <h1>Todo List</h1>
+                    <p>Manage your daily tasks and stay organized</p>
+                </div>
+                
+                <div class="todo-input-container">
+                    <div class="input-group">
+                        <input type="text" id="todoInput" placeholder="Add a new todo..." maxlength="100">
+                        <button id="addTodoBtn" class="btn btn-primary">
+                            <i class="fas fa-plus"></i>
+                            Add Todo
+                        </button>
+                    </div>
+                </div>
+                
+                <div class="todo-filters">
+                    <button class="filter-btn active" data-filter="all">All</button>
+                    <button class="filter-btn" data-filter="active">Active</button>
+                    <button class="filter-btn" data-filter="completed">Completed</button>
+                </div>
+                
+                <div class="todo-list" id="todoList">
+                    <!-- Todos will be populated here -->
+                </div>
+            </div>
+        </section>
+
+        <!-- Income Section -->
+        <section id="income" class="section">
+            <div class="container">
+                <div class="section-header">
+                    <h1>Income Tracker</h1>
+                    <p>Record your daily income and track monthly totals</p>
+                </div>
+                
+                <div class="income-input-container">
+                    <div class="input-row">
+                        <div class="input-group">
+                            <label for="incomeDate">Date</label>
+                            <input type="date" id="incomeDate">
+                        </div>
+                        <div class="input-group">
+                            <label for="incomeAmount">Amount ($)</label>
+                            <input type="number" id="incomeAmount" placeholder="0.00" step="0.01" min="0">
+                        </div>
+                        <div class="input-group">
+                            <label for="incomeSource">Source</label>
+                            <input type="text" id="incomeSource" placeholder="e.g., Salary, Freelance">
+                        </div>
+                        <div class="input-group">
+                            <button id="addIncomeBtn" class="btn btn-success">
+                                <i class="fas fa-plus"></i>
+                                Add Income
+                            </button>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="summary-cards">
+                    <div class="summary-card">
+                        <h3>This Month</h3>
+                        <div class="amount" id="currentMonthIncome">$0.00</div>
+                    </div>
+                    <div class="summary-card">
+                        <h3>Last Month</h3>
+                        <div class="amount" id="lastMonthIncome">$0.00</div>
+                    </div>
+                    <div class="summary-card">
+                        <h3>Total Income</h3>
+                        <div class="amount" id="totalIncome">$0.00</div>
+                    </div>
+                </div>
+                
+                <div class="income-list" id="incomeList">
+                    <!-- Income entries will be populated here -->
+                </div>
+            </div>
+        </section>
+
+        <!-- Expenses Section -->
+        <section id="expenses" class="section">
+            <div class="container">
+                <div class="section-header">
+                    <h1>Expense Tracker</h1>
+                    <p>Track your daily expenses with detailed descriptions</p>
+                </div>
+                
+                <div class="expense-input-container">
+                    <div class="input-row">
+                        <div class="input-group">
+                            <label for="expenseDate">Date</label>
+                            <input type="date" id="expenseDate">
+                        </div>
+                        <div class="input-group">
+                            <label for="expenseAmount">Amount ($)</label>
+                            <input type="number" id="expenseAmount" placeholder="0.00" step="0.01" min="0">
+                        </div>
+                        <div class="input-group">
+                            <label for="expenseCategory">Category</label>
+                            <select id="expenseCategory">
+                                <option value="Food">Food</option>
+                                <option value="Transportation">Transportation</option>
+                                <option value="Entertainment">Entertainment</option>
+                                <option value="Shopping">Shopping</option>
+                                <option value="Bills">Bills</option>
+                                <option value="Healthcare">Healthcare</option>
+                                <option value="Other">Other</option>
+                            </select>
+                        </div>
+                    </div>
+                    <div class="input-row">
+                        <div class="input-group full-width">
+                            <label for="expenseDescription">Description</label>
+                            <input type="text" id="expenseDescription" placeholder="Brief description of the expense">
+                        </div>
+                        <button id="addExpenseBtn" class="btn btn-danger">
+                            <i class="fas fa-plus"></i>
+                            Add Expense
+                        </button>
+                    </div>
+                </div>
+                
+                <div class="summary-cards">
+                    <div class="summary-card">
+                        <h3>This Month</h3>
+                        <div class="amount text-red" id="currentMonthExpenses">$0.00</div>
+                    </div>
+                    <div class="summary-card">
+                        <h3>Last Month</h3>
+                        <div class="amount text-red" id="lastMonthExpenses">$0.00</div>
+                    </div>
+                    <div class="summary-card">
+                        <h3>Total Expenses</h3>
+                        <div class="amount text-red" id="totalExpenses">$0.00</div>
+                    </div>
+                </div>
+                
+                <div class="expense-list" id="expenseList">
+                    <!-- Expense entries will be populated here -->
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <script src="script.js"></script>
+</body>
+</html>
